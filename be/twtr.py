@@ -304,6 +304,7 @@ def atlas_connect():
 
     # Python
     client = pymongo.MongoClient("mongodb+srv://admin:<password>@tweets.8ugzv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    print("test")
     db = client.test
 
 
