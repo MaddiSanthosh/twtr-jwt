@@ -11,21 +11,21 @@ import Paper from '@material-ui/core/Paper'
 //import MenuContext from 'material-ui-shell/lib/providers/Menu/Context'
 import { Link } from 'react-router-dom'
 
-const localStorageAuthKey = 'twtr:auth';
-function getAccessToken() {
-  if (typeof Storage !== 'undefined') {
-      try {
-        var keys = JSON.parse(localStorage.getItem(localStorageAuthKey));
-        return keys.access;
-        // the refresh token is keys.refresh
+// const localStorageAuthKey = 'twtr:auth';
+// function getAccessToken() {
+//   if (typeof Storage !== 'undefined') {
+//       try {
+//         var keys = JSON.parse(localStorage.getItem(localStorageAuthKey));
+//         return keys.access;
+//         // the refresh token is keys.refresh
 
-      } catch (ex) {
-          console.log(ex);
-      }
-  } else {
-      // No web storage Support :-(
-  }
-}
+//       } catch (ex) {
+//           console.log(ex);
+//       }
+//   } else {
+//       // No web storage Support :-(
+//   }
+// }
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -74,9 +74,9 @@ const Compose = () => {
 
   // async launch POST with access token
   const postTweet = async (user, description, priv, pic) => {
-    const access_token = getAccessToken();
-    console.log('access_token:');
-    console.log(access_token);
+    //const access_token = getAccessToken();
+    //console.log('access_token:');
+    //console.log(access_token);
     const paramdict = {
       'user': user,
       'description': description,
@@ -99,8 +99,13 @@ const Compose = () => {
       console.log("Compose.js: fetching from " + `${process.env.REACT_APP_API_SERVICE_URL}/tweet`)
       //const response = await fetch("http://localhost:5000/tweet", config);
       //const response = await fetch(`${process.env.REACT_APP_BE_NETWORK}:${process.env.REACT_APP_BE_PORT}/tweet`, config);
-      const response = await fetch(`tweet`, config);
+      //const response = await fetch(`tweet`, config);
       //const json = await response.json()
+      
+      const response = await fetch(
+        `${process.env.REACT_APP_API_SERVICE_URL}/tweet`,
+        config
+      );
       if (response.ok) {
           //return json
           //return response
